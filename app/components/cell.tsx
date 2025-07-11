@@ -3,18 +3,25 @@ import { Dispatch, SetStateAction } from "react";
 type CellProps = {
   id: number;
   go: string;
-  setGo: () => Dispatch<SetStateAction<string>>;
+  setGo: Dispatch<SetStateAction<string>>
   cells: string[];
   setCells: Dispatch<SetStateAction<string[]>>;
   cell: string;
-  winningMessage: string
+  winningMessage: string;
 };
 
-const Cell = ({ go, setGo, id, cells, setCells, cell, winningMessage }: CellProps) => {
-
-  const handleClick = (e) => {
+const Cell = ({
+  go,
+  setGo,
+  id,
+  cells,
+  setCells,
+  cell,
+  winningMessage,
+}: CellProps) => {
+  const handleClick = () => {
     if (winningMessage) {
-      return; 
+      return;
     }
     const notTaken = !cells[id];
 
@@ -30,7 +37,7 @@ const Cell = ({ go, setGo, id, cells, setCells, cell, winningMessage }: CellProp
   };
 
   const handleCellChange = (cellToChange: string) => {
-    let copyCells = [...cells];
+    const copyCells = [...cells];
     copyCells[id] = cellToChange;
     setCells(copyCells);
   };
